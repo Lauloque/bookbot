@@ -10,9 +10,8 @@ def row_print(text="", sign="=", width=34) -> None:
     print(f"{sign * x} {text} {sign * y}")
 
 
-def chars_print(items={}) -> None:
+def chars_print(items: list[tuple[str, int]]) -> None:
     for item in items:
-        char = item['char']
-        num = item['num']
-        if char.isalpha():
-            print(f"{char}: {num}")
+        key, value = item
+        clean_key = key.replace("\ufeff", "<BOM>")  # make BOM character readable
+        print(f"{clean_key}: {value}")
